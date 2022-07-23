@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -27,12 +28,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: "react", // Don't have to 'import React from 'react'; on top of your component'
+    }),
     new HtmlWebpackPlugin({
       title: "Reactjs Technical Test 2",
       template: "public/index.html",
     }),
   ],
-  stats: "errors-only", // Only show error on console.log
   optimization: {
     splitChunks: {
       chunks: "all", // Include frontend-vendors to the index.html

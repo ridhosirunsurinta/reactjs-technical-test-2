@@ -4,15 +4,13 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "source-map",
+  devtool: "inline-source-map",
   devServer: {
     hot: true, // Reload Automatically
     port: 3000, // PORT
     https: false,
     compress: true,
-    client: {
-      logging: "none", // I don't need for now
-    },
+    open: true, // Open default browser automatically
   },
   module: {
     rules: [

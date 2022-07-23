@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config ./webpack.dev.js --open",
-    "build:prod": "webpack build --config ./webpack.prod.js --node-env production"
+    "dev": "webpack serve --config ./webpack.dev.js",
+    "build:prod": "NODE_ENV=production webpack build --config ./webpack.prod.js"
   },
   "keywords": [],
   "author": "Ridho Sirun Surinta",
