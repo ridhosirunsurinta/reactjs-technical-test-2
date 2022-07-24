@@ -4,7 +4,7 @@ import _ from "lodash";
 
 const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  ({ sortBy, sortOrder }) => {
+  ({ sortBy, sortOrder, page }) => {
     return axios
       .get("https://randomuser.me/api", {
         params: {
@@ -12,6 +12,7 @@ const fetchUsers = createAsyncThunk(
           inc: "id,login,name,email,gender,registered",
           sortBy,
           sortOrder,
+          page,
         },
       })
       .then((res) => res.data);
