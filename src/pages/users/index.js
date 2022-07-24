@@ -27,10 +27,8 @@ function UserPage() {
     onSubmit: (values) => {
       dispatch(
         fetchUsers({
-          params: {
-            keyword: values.keyword,
-            gender: getGender(values.gender),
-          },
+          keyword: values.keyword,
+          gender: getGender(values.gender),
         })
       );
     },
