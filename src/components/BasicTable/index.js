@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,27 +8,71 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
+import { fetchUsers } from "../../requests/users";
 import _ from "lodash";
 
 function BasicTable(props) {
+  const dispatch = useDispatch();
   const { columns, data, size, stickyHeader } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [colValue, setColValue] = useState("");
+  const isOpen = Boolean(anchorEl);
+
+  function handleOpenMenu(e, colValue) {
+    setAnchorEl(e.currentTarget);
+    setColValue(colValue);
+  }
+
+  function handleCloseMenu() {
+    setAnchorEl(null);
+  }
+
+  function handleSort(sortOrder) {
+    dispatch(
+      fetchUsers({
+        sortBy: colValue,
+        sortOrder,
+      })
+    );
+    handleCloseMenu();
+  }
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size={size} stickyHeader={stickyHeader}>
+        {/* TABLE HEAD */}
         <TableHead>
           <TableRow>
             {columns.map((col) => {
               return (
-                <TableCell key={col.label} align={col.align}>
-                  {col.label}
+                <TableCell key={col.label} variant="head" align={col.align}>
+                  <Typography component="span">{col.label}</Typography>
+                  <IconButton onClick={(e) => handleOpenMenu(e, col.value)}>
+                    <MoreVertIcon />
+                  </IconButton>
                 </TableCell>
               );
             })}
           </TableRow>
         </TableHead>
 
+        {/* SORT MENU */}
+        <Menu open={isOpen} anchorEl={anchorEl} onClose={handleCloseMenu}>
+          <MenuItem onClick={() => handleSort(colValue, "ascend")}>
+            Sort by ASC
+          </MenuItem>
+          <MenuItem onClick={() => handleSort(colValue, "descend")}>
+            Sort by DESC
+          </MenuItem>
+        </Menu>
+
+        {/* TABLE BODY */}
         <TableBody>
           {data.map((row, i) => (
             <TableRow

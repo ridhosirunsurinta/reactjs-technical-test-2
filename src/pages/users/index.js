@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import BasicTable from "../../components/BasicTable";
 import { USERS_TABLE_COLUMNS } from "../../constants";
 import { fetchUsers } from "../../requests/users";
+import { getGender } from "../../utils";
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -27,7 +28,6 @@ function UserPage() {
       dispatch(
         fetchUsers({
           params: {
-            results: 5,
             keyword: values.keyword,
             gender: getGender(values.gender),
           },
@@ -39,28 +39,17 @@ function UserPage() {
   useEffect(() => {
     dispatch(
       fetchUsers({
-        params: { results: 5 },
+        keyword: formik.initialValues.keyword,
+        gender: getGender(formik.initialValues.gender),
       })
     );
   }, []);
 
-  function getGender(g) {
-    switch (g) {
-      case 1:
-        return "male";
-      case 2:
-        return "female";
-      default:
-        return undefined;
-    }
-  }
-
   function handleReset() {
     dispatch(
       fetchUsers({
-        params: {
-          results: 5,
-        },
+        keyword: formik.initialValues.keyword,
+        gender: getGender(formik.initialValues.gender),
       })
     );
     formik.resetForm();
