@@ -18,6 +18,7 @@ module.exports = {
       "axios",
       "lodash",
       "luxon",
+      "formik",
     ],
   },
   module: {

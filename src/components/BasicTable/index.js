@@ -28,9 +28,9 @@ function BasicTable(props) {
         </TableHead>
 
         <TableBody>
-          {data.map((row) => (
+          {data.map((row, i) => (
             <TableRow
-              key={row.id}
+              key={i}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="center">{row.login.username}</TableCell>
