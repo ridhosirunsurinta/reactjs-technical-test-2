@@ -35,10 +35,10 @@ function BasicTable(props) {
     setAnchorEl(null);
   }
 
-  function handleSort(sortOrder) {
+  function handleSort(sortBy, sortOrder) {
     dispatch(
       fetchUsers({
-        sortBy: colValue,
+        sortBy,
         sortOrder,
       })
     );
