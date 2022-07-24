@@ -40,24 +40,7 @@ function App() {
       <Grid item xs={12} sm={12} md={12}>
         <BasicTable
           columns={USERS_TABLE_COLUMNS}
-          data={[
-            {
-              id: "1",
-              login: { username: "johndoe" },
-              name: { first: "John", last: "Doe" },
-              email: "john-doe@gmail.com",
-              gender: "male",
-              registered: { date: "24-07-2022 11:11" },
-            },
-            {
-              id: "2",
-              login: { username: "janedoe" },
-              name: { first: "Jane", last: "Doe" },
-              email: "jane-doe@gmail.com",
-              gender: "female",
-              registered: { date: "23-07-2022 10:10" },
-            },
-          ]}
+          data={users.results}
           stickyHeader
         />
       </Grid>

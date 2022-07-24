@@ -6,6 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { DateTime } from "luxon";
+import _ from "lodash";
 
 function BasicTable(props) {
   const { columns, data, size, stickyHeader } = props;
@@ -34,8 +36,12 @@ function BasicTable(props) {
               <TableCell align="center">{row.login.username}</TableCell>
               <TableCell align="center">{`${row.name.first} ${row.name.last}`}</TableCell>
               <TableCell align="center">{row.email}</TableCell>
-              <TableCell align="center">{row.gender}</TableCell>
-              <TableCell align="center">{row.registered.date}</TableCell>
+              <TableCell align="center">{_.startCase(row.gender)}</TableCell>
+              <TableCell align="center">
+                {DateTime.fromISO(row.registered.date).toLocaleString(
+                  DateTime.DATETIME_MED
+                )}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

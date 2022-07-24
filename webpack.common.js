@@ -16,6 +16,8 @@ module.exports = {
       "@emotion/react",
       "@emotion/styled",
       "axios",
+      "lodash",
+      "luxon",
     ],
   },
   module: {
