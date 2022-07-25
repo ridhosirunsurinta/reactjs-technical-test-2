@@ -70,6 +70,7 @@ function UserPage() {
           </Grid>
           <Grid item sx={{ display: "flex" }}>
             <TextField
+              id="keyword"
               name="keyword"
               label="Search"
               size="small"
@@ -83,6 +84,7 @@ function UserPage() {
             <FormControl fullWidth>
               <InputLabel>Gender</InputLabel>
               <Select
+                id="gender"
                 name="gender"
                 label="Gender"
                 size="small"
@@ -97,6 +99,7 @@ function UserPage() {
           </Grid>
           <Grid item>
             <Button
+              id="btn-search"
               variant="contained"
               sx={{ alignSelf: "center" }}
               onClick={formik.handleSubmit}
@@ -106,6 +109,7 @@ function UserPage() {
           </Grid>
           <Grid item>
             <Button
+              id="btn-reset"
               variant="contained"
               sx={{
                 backgroundColor: "#9e9e9e",
